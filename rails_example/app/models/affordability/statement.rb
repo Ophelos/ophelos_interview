@@ -15,14 +15,6 @@ module Affordability
 
     validates_associated :transactions
 
-    def total_income
-      transactions.income.sum(:amount)
-    end
-
-    def total_expenditure
-      transactions.expenditure.sum(:amount)
-    end
-
     def disposable_income
       total_income - total_expenditure
     end
@@ -36,6 +28,16 @@ module Affordability
       end
     rescue TypeError, Date::Error
       nil
+    end
+
+    private
+
+    def total_income
+      transactions.income.sum(:amount)
+    end
+
+    def total_expenditure
+      transactions.expenditure.sum(:amount)
     end
   end
 end

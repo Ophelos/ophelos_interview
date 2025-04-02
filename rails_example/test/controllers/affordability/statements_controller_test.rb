@@ -88,8 +88,6 @@ module Affordability
       assert_select "h1", "Your affordability statements"
       assert_select "tbody > tr", count: 1
       assert_select "tbody > tr > td", text: "January 2024"
-      assert_select "tbody > tr > td", text: "£150.00"
-      assert_select "tbody > tr > td", text: "£50.00"
       assert_select "tbody > tr > td", text: "£100.00"
     end
 

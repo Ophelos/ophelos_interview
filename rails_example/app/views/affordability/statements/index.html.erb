@@ -8,22 +8,18 @@
       class: "underline hover:font-medium"
     ) %>
 
-<table class="mt-8 w-full">
+<table class="mt-8 max-w-xl text-left">
   <thead>
     <tr>
       <th>Statement period</th>
-      <th>Total income</th>
-      <th>Total expenditure</th>
       <th>Disposable income</th>
     </tr>
   </thead>
-  <tbody>
-    <% @statements.each do |affordability_statement| %>
+  <tbody class="space-y-6">
+    <% @statements.each do |statement| %>
       <tr>
-        <td><%= affordability_statement.statement_period.strftime("%B %Y") %></td>
-        <td><%= number_to_currency(affordability_statement.total_income / 100.00, unit: "£") %></td>
-        <td><%= number_to_currency(affordability_statement.total_expenditure / 100.0, unit: "£") %></td>
-        <td><%= number_to_currency(affordability_statement.disposable_income / 100.0, unit: "£") %></td>
+        <td><%= statement.statement_period.strftime("%B %Y") %></td>
+        <td><%= number_to_currency(statement.disposable_income / 100.0, unit: "£") %></td>
       </tr>
     <% end %>
 </table>
