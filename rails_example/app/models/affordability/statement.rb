@@ -15,6 +15,18 @@ module Affordability
 
     validates_associated :transactions
 
+    def total_income
+      transactions.income.sum(:amount)
+    end
+
+    def total_expenditure
+      transactions.expenditure.sum(:amount)
+    end
+
+    def disposable_income
+      total_income - total_expenditure
+    end
+
     def statement_period=(value)
       if value.is_a?(Hash)
         year, month, _day = value.values
