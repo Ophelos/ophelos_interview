@@ -68,6 +68,31 @@ module Affordability
       assert_response :unprocessable_entity
     end
 
+    test "GET index - displays statements" do
+      user = users(:one)
+
+      Statement.create!(
+        user: user,
+        statement_period: Date.new(2024, 1, 31),
+        transactions_attributes: [
+          { category: "income", description: "Salary", amount: 150_00 },
+          { category: "expenditure", description: "Rent", amount: 50_00 }
+        ]
+      )
+
+      login_with user.email_address, "password"
+
+      get affordability_statements_url
+
+      assert_response :success
+      assert_select "h1", "Your affordability statements"
+      assert_select "tbody > tr", count: 1
+      assert_select "tbody > tr > td", text: "January 2024"
+      assert_select "tbody > tr > td", text: "£150.00"
+      assert_select "tbody > tr > td", text: "£50.00"
+      assert_select "tbody > tr > td", text: "£100.00"
+    end
+
     private
 
     def login_with(email_address, password)

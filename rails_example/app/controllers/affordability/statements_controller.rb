@@ -17,6 +17,7 @@ module Affordability
     end
 
     def index
+      @statements = Statement.where(user: Current.user).order(created_at: :desc)
     end
 
     private
