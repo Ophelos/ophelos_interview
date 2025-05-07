@@ -121,12 +121,14 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  password: 'password'
 };
 
 exports.Prisma.StatementScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  name: 'name',
   userId: 'userId'
 };
 

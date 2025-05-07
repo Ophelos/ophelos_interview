@@ -4,7 +4,7 @@ import { createUser, getUserById } from "../../../src/features/users/user.servic
 const prisma = new PrismaClient();
 
 describe("user.service (integration)", () => {
-    const data = { email: "test@example.com", name: "Test User" };
+    const data = { email: "test@example.com", name: "Test User", password: "testing12345" };
     describe("createUser", () => {
         it("persists a user into the database and fetch the same created user", async () => {
             const createdUser = await createUser(data)
