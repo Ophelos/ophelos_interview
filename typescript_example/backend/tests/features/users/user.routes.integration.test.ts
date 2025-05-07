@@ -24,7 +24,7 @@ describe("POST /api/users", () => {
         const res = await fetch(`${baseURL}/api/users`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: "test@example.com", name: "Test User" }),
+            body: JSON.stringify({ email: "test@example.com", name: "Test User", password: "testing12345" }),
         });
 
         expect(res.status).toBe(201);
@@ -41,7 +41,7 @@ describe("POST /api/users", () => {
         const res = await fetch(`${baseURL}/api/users`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: "test@example.com" }),
+            body: JSON.stringify({ email: "test@example.com", password: "testing12345" }),
         });
 
         expect(res.status).toBe(400);
@@ -61,7 +61,7 @@ describe("POST /api/users", () => {
         const res = await fetch(`${baseURL}/api/users`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: "not-an-email", name: "Test User" }),
+            body: JSON.stringify({ email: "not-an-email", name: "Test User", password: "testing12345" }),
         });
 
         expect(res.status).toBe(400);
@@ -80,7 +80,7 @@ describe("POST /api/users", () => {
 
 describe("GET /api/users/:id", () => {
     it("should return 200 and the user data", async () => {
-        const created = await prisma.user.create({ data: { email: 'test@example.com', name: 'Test User' } });
+        const created = await prisma.user.create({ data: { email: 'test@example.com', name: 'Test User', password: "testing12345" } });
         const res = await fetch(`${baseURL}/api/users/${created.id}`)
 
         expect(res.status).toBe(200);

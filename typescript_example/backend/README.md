@@ -6,6 +6,10 @@ This is a simple Node.js application with Prisma ORM and Express.js
 
 - To Run the test simply run `npm test` from your terminal in the root of this directory
 - To Lint run `npm run lint`
+- To build and start your DB docker instance `docker compose up -d postgres_db`
+- To stop your DB docker instance `docker compose down`
+- Migrate your DB `npx prisma migrate dev --name init`
+- To start your app locally `npm run dev`
 
 ### Expanding DB Schema
 

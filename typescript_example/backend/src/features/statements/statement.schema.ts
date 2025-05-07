@@ -6,6 +6,7 @@ export const createStatementSchema = z.object({
       .string()
       .regex(/^\d+$/)
       .transform((val) => parseInt(val, 10)),
+    name: z.string(),
   }),
 });
 

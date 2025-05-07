@@ -5,7 +5,8 @@ import { parseId } from '../../utils/parseId';
 export const createStatementHandler = async (req: Request, res: Response) => {
     try {
         const userId = parseId(req.params.id, "user Id");
-        const statement = await createStatement(userId);
+        const name = req.params.name;
+        const statement = await createStatement(userId, name);
         res.status(201).json(statement);
     } catch (error: unknown) {
         if (error instanceof Error) { 

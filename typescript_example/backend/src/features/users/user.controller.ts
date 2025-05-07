@@ -24,9 +24,9 @@ export const getUserHandler = async (req: Request, res: Response) => {
 
 export const createUserHandler = async (req: Request, res: Response) => {
     try {
-        const { email, name } = req.body as RequiredUserData;
+        const { email, name, password } = req.body as RequiredUserData;
     
-        const user = await createUser({ email, name });
+        const user = await createUser({ email, name, password });
         res.status(201).json(user);
     } catch (error: unknown) {
         if (error instanceof Error) { 

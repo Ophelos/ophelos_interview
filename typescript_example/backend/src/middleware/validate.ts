@@ -10,9 +10,9 @@ export const validate =
         params: req.params,
       });
       next();
-    } catch (err: unknown) {
-        if (err instanceof Error) { 
-            res.status(400).json({ error: err.message }); 
+    } catch (error: unknown) {
+        if (error instanceof Error) { 
+            res.status(400).json({ errors: JSON.parse(error.message) }); 
         }
     }
 };
