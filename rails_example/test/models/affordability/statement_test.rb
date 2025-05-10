@@ -53,5 +53,19 @@ module Affordability
       assert_predicate statement, :invalid?
       assert_equal [ "is invalid" ], statement.errors[:transactions]
     end
+
+    test "#disposable_income - calculates disposable income" do
+      statement = Statement.create!(
+        user: users(:one),
+        statement_period: Date.yesterday,
+        transactions_attributes: [
+          { category: :income, description: "Salary", amount: 1000_00 },
+          { category: :expenditure, description: "Rent", amount: 500_00 },
+          { category: :expenditure, description: "Groceries", amount: 200_00 }
+        ]
+      )
+
+      assert_equal 300_00, statement.disposable_income
+    end
   end
 end
